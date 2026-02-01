@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دلّني | الرياض</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark:    #0B1F2A;
+      --deep:    #0B3C3A;
+      --gold:    #C7A14A;
+      --sand:    #F6F4EF;
+      --muted:   #94A3B8;
+      --light:   #e5e7eb;
+      --ocean:   #0a4d6e;
+      --ocean-light: #1a6a8f;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background: #fff;
+      color: var(--dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 2.5rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .logo { font-size: 2.1rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+    .auth a {
+      padding: 0.7rem 1.6rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .login { color: white; border: 1px solid rgba(255,255,255,0.5); }
+    .login:hover { background: rgba(255,255,255,0.15); }
+    .signup { background: var(--gold); color: var(--dark); }
+    .signup:hover { opacity: 0.92; transform: translateY(-2px); }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 80vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: right;
+      color: white;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1682695796795-cc287af78a2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+      z-index: 1;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(11,31,42,0.25), rgba(11,31,42,0.85));
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative; z-index: 5;
+      max-width: 680px; padding: 0 5%;
+      animation: fadeUp 1.4s ease-out;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(60px); } to { opacity:1; transform:translateY(0); } }
+    h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 1.4rem; line-height: 1.1; }
+    .hero p { font-size: 1.25rem; max-width: 520px; color: var(--light); margin-bottom: 2.5rem; line-height: 1.7; }
+
+    /* Sections */
+    section { padding: 120px 8%; }
+    h2 { font-size: 3rem; text-align: center; margin-bottom: 4rem; color: var(--deep); }
+
+    /* Attractions Grid */
+    .attractions {
+      background: var(--sand);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .card {
+      position: relative;
+      height: 450px;
+      border-radius: 28px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      transition: all 0.5s ease;
+    }
+    .card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.75));
+    }
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      padding: 30px;
+      z-index: 2;
+      color: white;
+    }
+    .card h3 { font-size: 2rem; margin-bottom: 0.8rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+    .card p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; line-height: 1.5; }
+    .book-btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+    .book-btn:hover { background: #d4b56a; transform: translateY(-3px); }
+
+    /* Hotels Section */
+    .hotels {
+      background: var(--ocean);
+      color: white;
+    }
+    .hotels h2 { color: var(--gold); }
+    .hotels .grid { gap: 30px; }
+    .hotel-card {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .hotel-card img { width: 100%; border-radius: 16px; margin-bottom: 1rem; }
+    .hotel-card h4 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .hotel-card p { font-size: 1rem; opacity: 0.85; }
+
+    /* Tips Section */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .tips ul { list-style: none; font-size: 1.2rem; color: #444; }
+    .tips li { margin-bottom: 1rem; position: relative; padding-right: 25px; }
+    .tips li::before { content: "✓"; position: absolute; right: 0; color: var(--gold); }
+    .tips img { width: 100%; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+
+    /* Footer */
+    footer {
+      background: #0A141E;
+      color: #cbd5e1;
+      padding: 140px 10% 60px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+    footer h4 { color: white; margin-bottom: 1.6rem; font-size: 1.4rem; }
+    footer a { display: block; color: var(--muted); text-decoration: none; margin-bottom: 0.9rem; transition: color 0.3s; }
+    footer a:hover { color: var(--gold); }
+    .newsletter input {
+      width: 100%;
+      padding: 1rem 1.4rem;
+      border-radius: 50px;
+      border: none;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .newsletter button {
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      border: none;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .newsletter button:hover { background: #d4b56a; transform: translateY(-3px); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width:1100px) {
+      .tips { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width:768px) {
+      h1 { font-size: clamp(2.5rem,8vw,4rem); }
+      h2 { font-size: 2.5rem; }
+      .card { height: 380px; }
+      .card h3 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <header class="header">
+      <div class="logo">دلّني</div>
+      <div class="auth">
+        <a href="#" class="login">تسجيل الدخول</a>
+        <a href="#" class="signup">انضم إلينا</a>
+      </div>
+    </header>
+
+    <div class="hero-content">
+      <h1>اكتشف الرياض<br>قلب المملكة النابض</h1>
+      <p>من الأبراج الشاهقة إلى التراث التاريخي، الرياض تجمع بين الحداثة والأصالة في تجربة لا تُنسى.</p>
+    </div>
+  </section>
+
+  <!-- Attractions -->
+  <section class="attractions">
+    <h2>أبرز الوجهات السياحية</h2>
+    <div class="grid">
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1682695796795-cc287af78a2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>الدرعية</h3>
+          <p>موقع تراثي عالمي يعود إلى القرن الـ18، يعكس تاريخ المملكة مع مباني طينية أصيلة وفعاليات ثقافية.</p>
+          <a href="https://tickets.bujairi.sa/en/d/3552/diriyah-access" class="book-btn" target="_blank">احجز الآن</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('./a61cd27463fd83f0a2d6bb48a5858091.jpg')">
+        <div class="card-content">
+          <h3>برج المملكة</h3>
+          <p>أيقونة الرياض الحديثة، يوفر إطلالات بانورامية من الجسر الزجاجي ومركز تسوق فاخر.</p>
+          <a href="https://kingdomcentre.com.sa/" class="book-btn" target="_blank">زور الموقع</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('./38fc17b812daa3fb884c273452c3fb90.jpg')">
+        <div class="card-content">
+          <h3>بوليفارد ورلد</h3>
+          <p>مناطق ترفيهية مستوحاة من دول العالم، مع عروض حية ومطاعم متنوعة في موسم الرياض.</p>
+          <a href="https://webook.com/en/zones/boulevard-world-rs25" class="book-btn" target="_blank">احجز التذاكر</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('./72b71d88e84eaaf78db5cb1a4ae0ba58.jpg')">
+        <div class="card-content">
+          <h3>القدية</h3>
+          <p>مشروع ترفيهي عملاق يشمل مدينة ملاهي سيكس فلاجز، مع أفعوانيات قياسية عالمية.</p>
+          <a href="https://sixflagsqiddiyacity.com/en/tickets-passes" class="book-btn" target="_blank">احجز التذاكر</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('./e4d01227f0392a73e7b12d70e8415e46.jpg')">
+        <div class="card-content">
+          <h3>المتحف الوطني</h3>
+          <p>رحلة عبر تاريخ المملكة من العصور القديمة إلى الحاضر، مع معروضات تفاعلية.</p>
+          <a href="https://www.booking.com/city/sa/riyadh-sa.html" class="book-btn" target="_blank">احجز فندق قريب</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('./f48fc13edd92a3b7f829a46ac034bf25.jpg')">
+        <div class="card-content">
+          <h3>سوق المعيقلية</h3>
+          <p>سوق تقليدي نابض بالحياة، مثالي للتسوق من المجوهرات والعطور إلى التوابل الأصيلة.</p>
+          <a href="https://www.booking.com/city/sa/riyadh-sa.html" class="book-btn" target="_blank">احجز فندق قريب</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hotels -->
+  <section class="hotels">
+    <h2>ترند الرياض حاليا</h2>
+    <div class="grid">
+      <div class="hotel-card">
+        <img src="./38fc17b812daa3fb884c273452c3fb90.jpg" alt="فندق ناركيسوس">
+        <h4>بوليفارد ورد</h4>
+        <!-- <p>فاخر في حي العليا، قريب من الأبراج والتسوق.</p> -->
+        <a href="https://www.booking.com/hotel/sa/narcissus-the-royal.ar.html" class="book-btn" target="_blank">احجز الآن</a>
+      </div>
+      <div class="hotel-card">
+        <img src="./72b71d88e84eaaf78db5cb1a4ae0ba58.jpg" alt="فندق كراون بلازا">
+        <h4>ملاهي القدية</h4>
+        <!-- <p>مرافق حديثة ومركز مؤتمرات، مثالي للأعمال والترفيه.</p> -->
+        <a href="https://www.booking.com/hotel/sa/crowne-plaza-riyadh-rdc-and-convention.ar.html" class="book-btn" target="_blank">احجز الآن</a>
+      </div>
+      <div class="hotel-card">
+        <img src="./8_.jpg" alt="فندق نوفوتيل">
+        <h4>انطلاق النسخة الثانية من جائزة مؤسسة الملك عبدالله الإنسانية للخيل</h4>
+        <!-- <p>مريح وعائلي، مع مسبح وصالة رياضية.</p> -->
+        <a href="https://www.booking.com/hotel/sa/novotel-riyadh-sahafa.ar.html" class="book-btn" target="_blank">احجز الآن</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section class="tips">
+    <div>
+      <h2>نصائح لزيارة الرياض</h2>
+      <ul>
+        <li>زور في الشتاء لأجواء معتدلة (أكتوبر - أبريل).</li>
+        <li>استخدم تطبيقات النقل مثل أوبر أو كريم للتنقل السهل.</li>
+        <li>جرب المأكولات المحلية مثل الكبسة في مطاعم أصيلة.</li>
+        <li>احجز التذاكر مسبقًا للفعاليات في موسم الرياض.</li>
+        <li>ارتدِ ملابس محتشمة احترامًا للثقافة المحلية.</li>
+        <li>اكتشف الحدائق مثل حديقة الملك عبدالله للاسترخاء.</li>
+      </ul>
+    </div>
+    <img src="./9335c2459d26b7a678fc99aad522a2a8.jpg" alt="نصائح الرياض">
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>دلّني</h4>
+        <p>منصتك الوطنية لاكتشاف جمال المملكة العربية السعودية بأسلوب بصري ملهم.</p>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <a href="#">contact@dalelni.sa</a>
+        <a href="#">@dalelni</a>
+        <a href="#">+966 55 123 4567</a>
+      </div>
+      <div class="newsletter">
+        <h4>النشرة البريدية</h4>
+        <input type="email" placeholder="أدخل بريدك الإلكتروني">
+        <button>اشترك الآن</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 دلّني – جميع الحقوق محفوظة</span>
+      <span>تصميم وتطوير بـ ❤️ للوطن</span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دلّني | مناطق المملكة</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark: #0B1F2A;
+      --gold: #C7A14A;
+      --ocean: #0a4d6e;
+    }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      margin: 0;
+      background: var(--ocean);
+      color: white;
+    }
+    section { padding: 160px 8%; }
+    h1 {
+      text-align: center;
+      font-size: 3.8rem;
+      margin-bottom: 5rem;
+      color: var(--gold);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .card {
+      display: block;                  /* مهم ليتصرف <a> كـ block */
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      height: 420px;
+      border-radius: 28px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      transition: .5s;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.85));
+      z-index: 1;
+    }
+    .card:hover {
+      transform: translateY(-15px) scale(1.05);
+    }
+    .card h3 {
+      position: absolute;
+      bottom: 40px;
+      right: 30px;
+      font-size: 2rem;
+      z-index: 2;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section>
+    <h1>مناطق المملكة الـ 13</h1>
+
+    <div class="grid">
+
+      <a href="./riyadh.html" class="card" style="background-image:url('./تنزيل (16).jpg')">
+        <h3>الرياض</h3>
+      </a>
+
+      <a href="./makkah.html" class="card" style="background-image:url('./تنزيل (18).jpg')">
+        <h3>مكة المكرمة</h3>
+      </a>
+
+      <a href="./madinah.html" class="card" style="background-image:url('./تنزيل (19).jpg')">
+        <h3>المدينة المنورة</h3>
+      </a>
+
+      <a href="./eastern.html" class="card" style="background-image:url('./a6798f63573a74dde4694e0282d12b8e.jpg')">
+        <h3>المنطقة الشرقية</h3>
+      </a>
+
+      <a href="./asir.html" class="card" style="background-image:url('./a6d3dc3fa3e8e3002b474d553ce097df.jpg')">
+        <h3>عسير</h3>
+      </a>
+
+      <a href="./tabuk.html" class="card" style="background-image:url('./52358d03ed2b76075f01464403c252ab.jpg')">
+        <h3>تبوك</h3>
+      </a>
+
+      <a href="./hail.html" class="card" style="background-image:url('./618b119bb024d1005a6d50b09d79f87a.jpg')">
+        <h3>حائل</h3>
+      </a>
+
+      <a href="./jazan.html" class="card" style="background-image:url('./6831eed6c7d73dcaca06223cb21fd3fe.jpg')">
+        <h3>جازان</h3>
+      </a>
+
+      <a href="./najran.html" class="card" style="background-image:url('./e2a429878cdb8d86dd2b4637c1d284a7.jpg')">
+        <h3>نجران</h3>
+      </a>
+
+      <a href="./baha.html" class="card" style="background-image:url('./49cece9a818f37ca7595a82196779806.jpg')">
+        <h3>الباحة</h3>
+      </a>
+
+      <a href="./jawf.html" class="card" style="background-image:url('./c63ea4b9db2fd284f8f4a5df316865b5.jpg')">
+        <h3>الجوف</h3>
+      </a>
+
+      <a href="./northern-borders.html" class="card" style="background-image:url('./c13f5806c76926ac0ff543cf68f84fb2.jpg')">
+        <h3>الحدود الشمالية</h3>
+      </a>
+
+      <a href="./qassim.html" class="card" style="background-image:url('./نخل في جبال اجا.jpg')">
+        <h3>القصيم</h3>
+      </a>
+
+    </div>
+
+  </section>
+
+</body>
+</html>

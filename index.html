@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دلّني | اكتشف المملكة</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark:    #0B1F2A;
+      --deep:    #0B3C3A;
+      --gold:    #C7A14A;
+      --sand:    #F6F4EF;
+      --muted:   #94A3B8;
+      --light:   #e5e7eb;
+      --ocean:   #0a4d6e;
+      --ocean-light: #1a6a8f;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background: #fff;
+      color: var(--dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Hero Video */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: right;
+      color: white;
+      overflow: hidden;
+    }
+    .hero video {
+      position: absolute;
+      top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 1;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(11,31,42,0.25), rgba(11,31,42,0.85));
+      z-index: 2;
+    }
+    .header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 2.5rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .logo { font-size: 2.1rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+    .auth a {
+      padding: 0.7rem 1.6rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .login { color: white; border: 1px solid rgba(255,255,255,0.5); }
+    .login:hover { background: rgba(255,255,255,0.15); }
+    .signup { background: var(--gold); color: var(--dark); }
+    .signup:hover { opacity: 0.92; transform: translateY(-2px); }
+
+    .hero-content {
+      position: relative; z-index: 5;
+      max-width: 680px; padding: 0 5%;
+      animation: fadeUp 1.4s ease-out;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(60px); } to { opacity:1; transform:translateY(0); } }
+
+    h1 { font-size: clamp(3.5rem, 7vw, 6rem); font-weight: 700; margin-bottom: 1.4rem; line-height: 1.1; }
+    .hero p { font-size: 1.35rem; max-width: 520px; color: var(--light); margin-bottom: 2.5rem; line-height: 1.7; }
+    .cta {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--gold); color: var(--dark);
+      text-decoration: none; font-weight: 600; font-size: 1.1rem;
+      border-radius: 50px; transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(199,161,74,0.25);
+    }
+    .cta:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 20px 50px rgba(199,161,74,0.4); }
+
+    /* Common sections */
+    section { padding: 160px 8%; }
+    h2 { font-size: 3.5rem; text-align: center; margin-bottom: 4rem; }
+
+    /* Vision */
+    .vision {
+      background: var(--sand);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
+    }
+    .vision img { width:100%; border-radius:24px; box-shadow:0 20px 60px rgba(0,0,0,0.15); }
+    .vision blockquote { font-size:2.4rem; font-weight:500; line-height:1.5; color:var(--deep); }
+    .vision span { display:block; margin-top:2rem; font-size:1.1rem; color:#555; }
+
+    /* About */
+    .about {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
+    }
+    .about h2 { font-size:3rem; margin-bottom:1.8rem; }
+    .about p { font-size:1.2rem; color:#444; line-height:1.9; }
+    .about-images { position:relative; height:480px; }
+    .about-images img {
+      position:absolute; width:62%; border-radius:24px;
+      box-shadow:0 30px 70px rgba(0,0,0,0.22); transition:transform 0.6s ease;
+    }
+    .about-images img:hover { transform:scale(1.06) translateY(-15px); }
+    .about-images img:first-child { top:0; right:0; }
+    .about-images img:last-child { bottom:0; left:0; }
+
+    /* ربوع بلادي - التعديل الرئيسي هنا */
+    .redsea-music { 
+      background: var(--ocean); 
+      color: white; 
+      position: relative;
+    }
+    .redsea-music h2 {
+      color: var(--gold);
+    }
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .music-item {
+      display: block;                    /* التعديل المهم */
+      text-decoration: none;
+      color: white;
+      position: relative;
+      height: 480px;
+      border-radius: 28px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      transition: all 0.5s ease;
+    }
+    .music-item:hover {
+      transform: translateY(-20px) scale(1.05);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+    }
+    .music-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.85));
+      z-index: 1;
+    }
+    .music-item h3 {
+      position: absolute;
+      bottom: 90px;
+      right: 40px;
+      font-size: 2.2rem;
+      z-index: 2;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+      margin: 0;
+    }
+    .music-item p {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      left: 40px;
+      font-size: 1.15rem;
+      z-index: 2;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* رابط المزيد */
+    .more-link {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .more-link a {
+      padding: 1rem 2rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .more-link a:hover { background: #d4b56a; transform: translateY(-3px); }
+
+    /* Footer */
+    footer {
+      background: #0A141E;
+      color: #cbd5e1;
+      padding: 140px 10% 60px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+    footer h4 { color: white; margin-bottom: 1.6rem; font-size: 1.4rem; }
+    footer a { display: block; color: var(--muted); text-decoration: none; margin-bottom: 0.9rem; transition: color 0.3s; }
+    footer a:hover { color: var(--gold); }
+    .newsletter input {
+      width: 100%;
+      padding: 1rem 1.4rem;
+      border-radius: 50px;
+      border: none;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .newsletter button {
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      border: none;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .newsletter button:hover { background: #d4b56a; transform: translateY(-3px); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width:1100px) {
+      .vision, .about, .footer-grid { grid-template-columns: 1fr; gap: 60px; }
+    }
+    @media (max-width:768px) {
+      h1 { font-size: clamp(2.8rem,9vw,4.5rem); }
+      h2 { font-size: 2.8rem; }
+      .music-item { height: 420px; }
+      .music-item h3 { font-size: 1.8rem; bottom: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="./IMG_1552.MP4" type="video/mp4">
+      <img src="./ولي العهد السعودي الامير محمد بن سلمان Crown Prince Mohammed bin Salman.jpg" alt="Saudi Landscape">
+    </video>
+
+    <header class="header">
+      <div class="logo">دلّني</div>
+      <div class="auth">
+        <a href="#" class="login">تسجيل الدخول</a>
+        <a href="#" class="signup">انضم إلينا</a>
+      </div>
+    </header>
+
+    <div class="hero-content">
+      <h1>اكتشف المملكة<br>بكل ألوانها</h1>
+      <p>دلّني بوابتك البصرية الفاخرة لاستكشاف تنوع المملكة العربية السعودية من الجبال الخضراء إلى رمال العلا الذهبية.</p>
+      <a href="#music" class="cta">اكتشف مع دلني ربوع بلادي</a>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="vision">
+    <img src="./ولي العهد السعودي الامير محمد بن سلمان Crown Prince Mohammed bin Salman.jpg" alt="رؤية 2030">
+    <div>
+      <blockquote>"نمتلك مقومات سياحية استثنائية… وهدفنا أن نصبح وجهة عالمية رائدة."</blockquote>
+      <span>— صاحب السمو الملكي الأمير محمد بن سلمان</span>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div>
+      <h2>دلّني… تجربة تليق بوطن عظيم</h2>
+      <p>منصة وطنية رقمية تجمع أجمل لحظات المملكة في تجربة بصرية سلسة وملهمة، من شواطئ الخليج إلى قمم عسير، ومن آثار العلا إلى أسواق الرياض النابضة.</p>
+    </div>
+    <div class="about-images">
+      <img src="https://images.unsplash.com/photo-1682695796795-cc287af78a2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="الدرعية">
+      <img src="https://images.unsplash.com/photo-1682685797365-41f45b562c0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="مناظر طبيعية سعودية">
+    </div>
+  </section>
+
+  <!-- المربعات الرئيسية (6 مربعات) -->
+  <section class="redsea-music" id="music">
+    <h2>ربوع بلادي</h2>
+    <div class="music-grid">
+
+      <!-- الرياض: رابط قابل للضغط -->
+      <a href="./riyadh.html" class="music-item" style="background-image:url('./تنزيل (16).jpg')">
+        <h3>الرياض</h3>
+      </a>
+
+      <div class="music-item" style="background-image:url('./تنزيل (18).jpg')">
+        <h3>مكة المكرمة</h3>
+      </div>
+
+      <div class="music-item" style="background-image:url('./تنزيل (19).jpg')">
+        <h3>المدينة المنورة</h3>
+      </div>
+
+      <div class="music-item" style="background-image:url('./نخل في جبال اجا.jpg')">
+        <h3>القصيم</h3>
+      </div>
+
+      <!-- العلا: الآن رابط قابل للضغط زي الرياض -->
+      <a href="./alula.html" class="music-item" style="background-image:url('./Jabal-AlFil-(6)_1.jpg')">
+        <h3>العلا</h3>
+      </a>
+
+      <div class="music-item" style="background-image:url('./786d03553c4dbafb0a142662d3fdb6fc.jpg')">
+        <h3>أبها</h3>
+      </div>
+
+    </div>
+
+    <div class="more-link">
+      <a href="./regions.html">المزيد من الوجهات →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>دلّني</h4>
+        <p>منصتك الوطنية لاكتشاف جمال المملكة العربية السعودية بأسلوب بصري ملهم.</p>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <a href="#">contact@dalelni.sa</a>
+        <a href="#">@dalelni</a>
+        <a href="#">+966 55 123 4567</a>
+      </div>
+      <div class="newsletter">
+        <h4>النشرة البريدية</h4>
+        <input type="email" placeholder="أدخل بريدك الإلكتروني">
+        <button>اشترك الآن</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 دلّني – جميع الحقوق محفوظة</span>
+      <span>تصميم وتطوير بـ ❤️ للوطن</span>
+    </div>
+  </footer>
+
+</body>
+</html>
