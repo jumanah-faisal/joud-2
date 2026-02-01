@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دلّني | العلا</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark:    #0B1F2A;
+      --deep:    #0B3C3A;
+      --gold:    #C7A14A;
+      --sand:    #F6F4EF;
+      --muted:   #94A3B8;
+      --light:   #e5e7eb;
+      --ocean:   #0a4d6e;
+      --ocean-light: #1a6a8f;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background: #fff;
+      color: var(--dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 2.5rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .logo { font-size: 2.1rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+    .auth a {
+      padding: 0.7rem 1.6rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .login { color: white; border: 1px solid rgba(255,255,255,0.5); }
+    .login:hover { background: rgba(255,255,255,0.15); }
+    .signup { background: var(--gold); color: var(--dark); }
+    .signup:hover { opacity: 0.92; transform: translateY(-2px); }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 80vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: right;
+      color: white;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1610994789855-4b0b8d8d8d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+      z-index: 1;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(11,31,42,0.25), rgba(11,31,42,0.85));
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative; z-index: 5;
+      max-width: 680px; padding: 0 5%;
+      animation: fadeUp 1.4s ease-out;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(60px); } to { opacity:1; transform:translateY(0); } }
+    h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 1.4rem; line-height: 1.1; }
+    .hero p { font-size: 1.25rem; max-width: 520px; color: var(--light); margin-bottom: 2.5rem; line-height: 1.7; }
+
+    /* Sections */
+    section { padding: 120px 8%; }
+    h2 { font-size: 3rem; text-align: center; margin-bottom: 4rem; color: var(--deep); }
+
+    /* Attractions Grid */
+    .attractions {
+      background: var(--sand);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .card {
+      position: relative;
+      height: 450px;
+      border-radius: 28px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      transition: all 0.5s ease;
+    }
+    .card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.75));
+    }
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      padding: 30px;
+      z-index: 2;
+      color: white;
+    }
+    .card h3 { font-size: 2rem; margin-bottom: 0.8rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+    .card p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; line-height: 1.5; }
+    .explore-btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+    .explore-btn:hover { background: #d4b56a; transform: translateY(-3px); }
+
+    /* Trending Section */
+    .trending {
+      background: var(--ocean);
+      color: white;
+    }
+    .trending h2 { color: var(--gold); }
+
+    /* Footer same as before */
+    footer {
+      background: #0A141E;
+      color: #cbd5e1;
+      padding: 140px 10% 60px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+    footer h4 { color: white; margin-bottom: 1.6rem; font-size: 1.4rem; }
+    footer a { display: block; color: var(--muted); text-decoration: none; margin-bottom: 0.9rem; transition: color 0.3s; }
+    footer a:hover { color: var(--gold); }
+    .newsletter input {
+      width: 100%;
+      padding: 1rem 1.4rem;
+      border-radius: 50px;
+      border: none;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .newsletter button {
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      border: none;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .newsletter button:hover { background: #d4b56a; transform: translateY(-3px); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width:1100px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width:768px) {
+      h1 { font-size: clamp(2.5rem,8vw,4rem); }
+      h2 { font-size: 2.5rem; }
+      .card { height: 380px; }
+      .card h3 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <header class="header">
+      <div class="logo">دلّني</div>
+      <div class="auth">
+        <a href="#" class="login">تسجيل الدخول</a>
+        <a href="#" class="signup">انضم إلينا</a>
+      </div>
+    </header>
+
+    <div class="hero-content">
+      <h1>اكتشف العلا<br>جوهرة التاريخ والطبيعة</h1>
+      <p>من مقابر الحِجر النبطية إلى مرايا العاكسة وجبل الفيل، العلا تجمع بين 200 ألف سنة من التاريخ وإبداع معاصر مذهل.</p>
+    </div>
+  </section>
+
+  <!-- Attractions -->
+  <section class="attractions">
+    <h2>أبرز المعالم السياحية</h2>
+    <div class="grid">
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1610994789855-4b0b8d8d8d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>الحِجر (مدائن صالح)</h3>
+          <p>أول موقع سعودي في قائمة اليونسكو، مقابر نبطية منحوتة بدقة تعود للقرن الأول قبل الميلاد.</p>
+          <a href="https://www.experiencealula.com/ar/places-to-go/hegra" class="explore-btn" target="_blank">استكشف التجربة</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>قاعة مرايا</h3>
+          <p>أكبر مبنى مغطى بالمرايا في العالم، يعكس تضاريس العلا في مشهد سريالي مذهل.</p>
+          <a href="https://www.experiencealula.com/ar/places-to-go/maraya" class="explore-btn" target="_blank">زور الموقع</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>جبل الفيل</h3>
+          <p>تشكيل صخري طبيعي يشبه فيلًا عملاقًا، مثالي للتصوير والمغامرات في الصحراء.</p>
+          <a href="https://www.experiencealula.com/ar/places-to-go/jabal-al-fil" class="explore-btn" target="_blank">استكشف الآن</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1610994789855-4b0b8d8d8d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>دادان</h3>
+          <p>مدينة قديمة مع نقوش ومعابد منحوتة في الصخور، شاهد على حضارات ما قبل النبطيين.</p>
+          <a href="https://www.experiencealula.com/ar/places-to-go/dadan" class="explore-btn" target="_blank">اكتشف دادان</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>البلدة القديمة</h3>
+          <p>قرية تراثية بأكثر من 900 منزل طيني، تجربة أصيلة للثقافة والتاريخ المحلي.</p>
+          <a href="https://www.experiencealula.com/ar/places-to-go/alula-old-town" class="explore-btn" target="_blank">تجول في البلدة</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1610994789855-4b0b8d8d8d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>وادي عشار</h3>
+          <p>وادي خلاب مع تشكيلات صخرية ومناظر طبيعية، مثالي للمشي والتأمل.</p>
+          <a href="https://www.experiencealula.com/ar/places-to-go/ashar-valley" class="explore-btn" target="_blank">استكشف الوادي</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Now -->
+  <section class="trending">
+    <h2>ترند العلا حاليًا (2026)</h2>
+    <div class="grid">
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>معرض صحراء X العلا 2026</h3>
+          <p>تراكيب فنية جريئة في قلب الصحراء حتى 28 فبراير 2026 – فن أرضي مذهل.</p>
+          <a href="https://www.experiencealula.com/ar/whats-on/events/desert-x" class="explore-btn" target="_blank">احجز التجربة</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1610994789855-4b0b8d8d8d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>طواف العلا 2026</h3>
+          <p>سباق دراجات عالمي نخبوي (27-31 يناير) عبر مناظر العلا الخلابة.</p>
+          <a href="https://www.experiencealula.com/ar/whats-on/events/alula-tour" class="explore-btn" target="_blank">تابع السباق</a>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+        <div class="card-content">
+          <h3>رحلات المناطيد والسفاري</h3>
+          <p>تحليق فوق التاريخ في محمية شرعان واستكشاف 200 ألف سنة من الحضارة.</p>
+          <a href="https://www.experiencealula.com/ar/things-to-do" class="explore-btn" target="_blank">احجز رحلة</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>دلّني</h4>
+        <p>منصتك الوطنية لاكتشاف جمال المملكة العربية السعودية بأسلوب بصري ملهم.</p>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <a href="#">contact@dalelni.sa</a>
+        <a href="#">@dalelni</a>
+        <a href="#">+966 55 123 4567</a>
+      </div>
+      <div class="newsletter">
+        <h4>النشرة البريدية</h4>
+        <input type="email" placeholder="أدخل بريدك الإلكتروني">
+        <button>اشترك الآن</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 دلّني – جميع الحقوق محفوظة</span>
+      <span>تصميم وتطوير بـ ❤️ للوطن</span>
+    </div>
+  </footer>
+
+</body>
+</html>
